@@ -4,6 +4,8 @@ function App() {
   const [category, setCategory] = useState("technology");
   const [news, setNews] = useState([]);
 
+  const API_URL = "http://127.0.0.1:8000";
+
   const fetchNews = async () => {
     const res = await fetch(`http://localhost:8000/news?category=${category}`);
     const data = await res.json();
