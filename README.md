@@ -43,7 +43,7 @@ GenZ NewsHub solves these problems by:
 
 ---
 
-## Creative Features (Challenge Requirement)
+## Creative Features
 
 ### 🔥 Responsible News AI
 
