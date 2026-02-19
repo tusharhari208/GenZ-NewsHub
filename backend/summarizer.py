@@ -1,18 +1,18 @@
 from openai import OpenAI
+from config import OPENAI_API_KEY
 
-client = OpenAI(api_key="YOUR_OPENAI_KEY")
+client = OpenAI(api_key=OPENAI_API_KEY)
 
-def summarize_news(content):
-    if not content:
-        return "Summary not available."
+def summarize_text(text):
+
+    prompt = f"Summarize this news article in 3 lines:\n{text}"
 
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4.1-mini",
         messages=[
-            {
-                "role": "user",
-                "content": f"Summarize this news in 3 short GenZ-friendly bullet points:\n{content}"
-            }
-        ]
+            {"role": "user", "content": prompt}
+        ],
+        max_tokens=120
     )
+
     return response.choices[0].message.content
