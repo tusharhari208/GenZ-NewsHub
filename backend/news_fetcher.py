@@ -1,5 +1,5 @@
 import requests
-from config import NEWS_API_KEY
+from backend.config import NEWS_API_KEY
 
 BASE_URL = "https://newsapi.org/v2/top-headlines"
 
