@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from news_fetcher import fetch_news
-from summarizer import summarize_text
+from backend.news_fetcher import fetch_news
+from backend.summarizer import summarize_text
 
 app = FastAPI()
 
