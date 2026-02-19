@@ -7,7 +7,7 @@ def fetch_news(category="technology"):
     params = {
         "apiKey": NEWS_API_KEY,
         "category": category,
-        "country": "us",
+        "country": "in",
         "pageSize": 5
     }
 
