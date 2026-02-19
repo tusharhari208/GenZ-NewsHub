@@ -1,13 +1,26 @@
 import requests
+from config import NEWS_API_KEY
 
-API_KEY = "YOUR_NEWSAPI_KEY"
 BASE_URL = "https://newsapi.org/v2/top-headlines"
 
-def fetch_news(category):
+def fetch_news(category="technology"):
     params = {
-        "apiKey": API_KEY,
+        "apiKey": NEWS_API_KEY,
         "category": category,
-        "language": "en"
+        "country": "us",
+        "pageSize": 5
     }
+
     response = requests.get(BASE_URL, params=params)
-    return response.json()
+    data = response.json()
+
+    articles = []
+
+    for article in data.get("articles", []):
+        articles.append({
+            "title": article["title"],
+            "description": article["description"],
+            "url": article["url"]
+        })
+
+    return articles
