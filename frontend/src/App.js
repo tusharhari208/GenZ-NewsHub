@@ -4,29 +4,27 @@ function App() {
   const [category, setCategory] = useState("technology");
   const [news, setNews] = useState([]);
 
-  // ✅ Use deployed backend URL
   const API_URL = "https://genz-newshub.onrender.com";
 
   const fetchNews = async () => {
-  try {
-    const res = await fetch(
-      `${API_URL}/news?category=${category}`
-    );
+    try {
+      const res = await fetch(
+        `${API_URL}/news?category=${category}`
+      );
 
-    const data = await res.json();
+      const data = await res.json();
 
-    console.log(data);   // ✅ DEBUG LINE
+      console.log(data);
 
-    setNews(data.articles || []);
-  } catch (error) {
-    console.error("Fetch error:", error);
-  }
-};
-
+      setNews(data.articles || []);
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
+  };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>GenZ NewsHub</h1>
+    <div style={{ padding: "20px", fontFamily: "Arial" }}>
+      <h1>📰 GenZ NewsHub</h1>
 
       <select onChange={(e) => setCategory(e.target.value)}>
         <option value="technology">Technology</option>
