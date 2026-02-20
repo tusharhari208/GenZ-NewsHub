@@ -4,7 +4,7 @@ function App() {
   const [category, setCategory] = useState("technology");
   const [news, setNews] = useState([]);
 
-  const API_URL = "http://127.0.0.1:8000";
+  const API_URL = "https://genz-newshub.onrender.com";
 
   const fetchNews = async () => {
     const res = await fetch(`${API_URL}/news?category=${category}`);
