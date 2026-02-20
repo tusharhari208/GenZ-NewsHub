@@ -8,20 +8,21 @@ function App() {
   const API_URL = "https://genz-newshub.onrender.com";
 
   const fetchNews = async () => {
-    try {
-      const res = await fetch(
-        `${API_URL}/news?category=${category}`
-      );
+  try {
+    const res = await fetch(
+      `${API_URL}/news?category=${category}`
+    );
 
-      const data = await res.json();
+    const data = await res.json();
 
-      // ✅ FIXED HERE
-      setNews(data.articles);
+    console.log(data);   // ✅ DEBUG LINE
 
-    } catch (error) {
-      console.error("Error fetching news:", error);
-    }
-  };
+    setNews(data.articles || []);
+  } catch (error) {
+    console.error("Fetch error:", error);
+  }
+};
+
 
   return (
     <div style={{ padding: "20px" }}>
