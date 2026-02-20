@@ -6,10 +6,10 @@ from backend.summarizer import summarize_text
 
 app = FastAPI()
 
-# ✅ Allow frontend (Vercel) to access backend
+# ✅ CORS CONFIGURATION (VERY IMPORTANT)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # allow all (safe for hackathon)
+    allow_origins=["*"],  # allow all origins (easy for deployment)
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
