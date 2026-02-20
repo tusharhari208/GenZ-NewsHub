@@ -6,10 +6,10 @@ from backend.summarizer import summarize_text
 
 app = FastAPI()
 
-# ✅ CORS CONFIGURATION (VERY IMPORTANT)
+# ✅ CORS FIX
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # allow all origins (easy for deployment)
+    allow_origins=["*"],  # allow all for demo
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -25,10 +25,19 @@ def get_news(category: str = "technology"):
 
     articles = fetch_news(category)
 
+    final_articles = []
+
     for article in articles:
-        if article.get("description"):
-            article["summary"] = summarize_text(article["description"])
+        description = article.get("description")
+
+        if description:
+            try:
+                article["summary"] = summarize_text(description)
+            except:
+                article["summary"] = description
         else:
             article["summary"] = "No description available."
 
-    return {"articles": articles}
+        final_articles.append(article)
+
+    return {"articles": final_articles}
