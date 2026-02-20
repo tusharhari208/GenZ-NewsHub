@@ -1,6 +1,7 @@
 import requests
 from backend.config import NEWS_API_KEY
 
+print("API KEY:", os.getenv("NEWS_API_KEY"))
 BASE_URL = "https://newsapi.org/v2/top-headlines"
 
 def fetch_news(category="technology"):
