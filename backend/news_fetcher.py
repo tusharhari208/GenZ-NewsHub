@@ -1,4 +1,5 @@
 import requests
+import os
 from backend.config import NEWS_API_KEY
 
 print("API KEY:", os.getenv("NEWS_API_KEY"))
