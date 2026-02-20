@@ -4,12 +4,23 @@ function App() {
   const [category, setCategory] = useState("technology");
   const [news, setNews] = useState([]);
 
+  // ✅ Use deployed backend URL
   const API_URL = "https://genz-newshub.onrender.com";
 
   const fetchNews = async () => {
-    const res = await fetch(`${API_URL}/news?category=${category}`);
-    const data = await res.json();
-    setNews(data);
+    try {
+      const res = await fetch(
+        `${API_URL}/news?category=${category}`
+      );
+
+      const data = await res.json();
+
+      // ✅ FIXED HERE
+      setNews(data.articles);
+
+    } catch (error) {
+      console.error("Error fetching news:", error);
+    }
   };
 
   return (
@@ -26,10 +37,13 @@ function App() {
         Fetch News
       </button>
 
+      <hr />
+
       {news.map((item, index) => (
-        <div key={index}>
+        <div key={index} style={{ marginBottom: "20px" }}>
           <h3>{item.title}</h3>
           <p>{item.summary}</p>
+
           <a href={item.url} target="_blank" rel="noreferrer">
             Read Full Article
           </a>
